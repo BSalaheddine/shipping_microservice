@@ -2,9 +2,10 @@ from flask import Flask, request, jsonify
 from flask_pymongo import PyMongo
 from flask import render_template
 import requests
+import os
 
 app = Flask(__name__)
-app.config['MONGO_URI'] = 'mongodb://localhost:27017/shipping_db'
+app.config['MONGO_URI'] = os.environ.get('MONGO_URI', 'mongodb://localhost:27017/shipping_db')
 mongo = PyMongo(app)
 
 @app.route('/new_parcel', methods=['POST'])
